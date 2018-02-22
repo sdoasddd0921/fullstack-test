@@ -19,15 +19,15 @@ const database = 'mydata';
 
 const dbConnectString = `mongodb://${dbUser}:${dbPass}@${isLocal?dbOut1:dbIn1}:${dbPort},${isLocal?dbOut2:dbIn2}:${dbPort}/${database}?replicaSet=${dbCopy}`;
 
-console.log(dbConnectString);
+// console.log(dbConnectString);
 //mongodb://mgdb:db123123@dds-bp1e4e5b9d0fb5241578-pub.mongodb.rds.aliyuncs.com:3717,dds-bp1e4e5b9d0fb5242256-pub.mongodb.rds.aliyuncs.com:3717/mydata?replicaSet=mgset-5292433
 //mongodb://root:z123123123@dds-bp1e4e5b9d0fb5241.mongodb.rds.aliyuncs.com:3717/admin
-mongoose.connect('mongodb://root:z123123123@dds-bp1e4e5b9d0fb5241.mongodb.rds.aliyuncs.com:3717/admin')
-  .then(
-    (data) => console.log('success: '),
-    err => console.log('err: ', err)
-  );
-console.log('isLocal: ', isLocal);
+// mongoose.connect('mongodb://root:z123123123@dds-bp1e4e5b9d0fb5241.mongodb.rds.aliyuncs.com:3717/admin')
+//   .then(
+//     (data) => console.log('success: '),
+//     err => console.log('err: ', err)
+//   );
+// console.log('isLocal: ', isLocal);
 
 
 
