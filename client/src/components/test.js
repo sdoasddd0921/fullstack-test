@@ -2,12 +2,8 @@ import React from 'react';
 
 class Test extends React.Component {
   client(type) {
-    fetch('/test', {
-      method: type,
-      body: JSON.stringify({type: type}),
-      headers: new Headers({
-        "Content-type": "application/json"
-      })
+    fetch('/api/test', {
+      method: type
     }).then(res=>res.json())
       .then(data=>console.log(data));
   }

@@ -4,6 +4,21 @@ var bodyParser = require('body-parser');
 var app = express();
 const router = require('./routes/router');
 
+const Cat = require('./models/Cats');
+
+// 连接数据库
+// require('./models/db');
+
+
+// Cat.create({
+//   name: 'Tomy',
+//   age: 22,
+//   sex: 'male'
+// }).then(cat => console.log(cat));
+
+
+
+
 // 添加静态文件路由
 app.use(express.static(path.join(__dirname, 'client/build')));
 

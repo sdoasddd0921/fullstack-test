@@ -25,11 +25,14 @@ ReactDOM.render(
 
       <hr/>
 
-      <Route exact path="/" component={App}/>
-      <Route path="/add" component={Add}/>
-      <Route path="/test" component={Test}/>
+      <div className="container">
+        <Route exact path="/" component={App}/>
+        <Route path="/add" component={Add}/>
+        <Route path="/test" component={Test}/>
+      </div>
     </div>
   </Router>,
   document.getElementById('root')
 );
+
 // registerServiceWorker();
