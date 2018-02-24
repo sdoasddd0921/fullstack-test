@@ -32,7 +32,7 @@ class Inp extends React.Component {
       'is-invalid': this.state.invalid
     });
 
-    return <div className="input-group mb-2">
+    return <div className="input-group mb-2 is-invalid">
       <div className="input-group-prepend">
         {/* 使内容文字居中需要加：justify-content-center */}
         <label htmlFor={name}
@@ -43,10 +43,10 @@ class Inp extends React.Component {
 
       <input type={type || 'text'}
              placeholder={`Enter your ${name}`}
-        // className="form-control is-invalid"
-             className={classes}
              onBlur={this.inputCheck.bind(this)}
+             onChange={this.inputCheck.bind(this)}
              defaultValue={info}
+             className={classes}
              name={name}
              id={name}
       />
