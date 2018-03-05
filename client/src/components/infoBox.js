@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import classnames from 'classnames';
+import { connect, mapStateToProps, mapDispatchToProps } from 'react-redux';
 
 const Form = styled.form`
   width: 256px;
@@ -17,11 +18,12 @@ class Inp extends React.Component {
   state = { invalid: false };
 
   inputCheck(e) {
-    const {check=() => true} = this.props;
+    // check 如果未定义则默认返回 false
+    const {check=() => false} = this.props;
     const value = e.target.value;
-    const invalid = !check(value);
-    console.log(invalid)
-    this.setState({invalid})
+    const invalid = check(value);
+    console.log('invalid: ', invalid)
+    this.setState({invalid});
   }
 
   render() {
@@ -54,52 +56,42 @@ class Inp extends React.Component {
   }
 }
 
-const Inps = ({info='', name, type, check=() => false}) => {
-  let checkFlag = false;
-  const inputCheck = (e) => {
-    if (!e) return false
-    const value = e.target.value;
-    checkFlag = check(value);
-  };
-
-  let classes = classnames({
-    'form-control': true,
-    'is-invalid': checkFlag
-  });
-
-  return (
-    <div className="input-group mb-2">
-      <div className="input-group-prepend">
-        {/* 使内容文字居中需要加：justify-content-center */}
-        <label htmlFor={name}
-               className="input-group-text justify-content-center">
-          {name}
-        </label>
-      </div>
-
-      <input type={type || 'text'}
-             placeholder={`Enter your ${name}`}
-             // className="form-control is-invalid"
-             className={classes}
-             onBlur={inputCheck}
-             defaultValue={info}
-             name={name}
-             id={name}
-      />
-    </div>
-  );
-};
-
 export default class Infobox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.fields = ['name', 'age', 'sex'];
+    this.state = {
+      values: this.fields.reduce((obj, field) => (obj[field] = '', obj), {}),
+      errors: this.fields.reduce((obj, field) => (obj[field] = '', obj), {})
+    };
+  }
+
+  nameCheck(value) {
+    console.log('namecheck:', value)
+    const invalidValue = value.length < 1;
+    this.setState({
+      values: {
+        name: invalidValue ? '' : value
+      }
+    });
+    console.log('name check')
+    return invalidValue;
+  }
+
   submit(e) {
     e.preventDefault();
+    this.fields.forEach(field => {
+      this[field+'Check']
+        ? this[field+'Check']()
+        : null
+    });
 
-    const data = {};
-    const formData = new FormData(e.target);
-    for (const [key, value] of formData)
-      data[key] = value;
+    // const data = {};
+    // const formData = new FormData(e.target);
+    // for (const [key, value] of formData)
+    //   data[key] = value;
 
-    this.props.callback(data);
+    // this.props.callback(data);
 
     e.target.reset();
   }
@@ -114,7 +106,7 @@ export default class Infobox extends React.Component {
     };
     return (
       <Form className="text-center" onSubmit={this.submit.bind(this)}>
-        <Inp name="name" info={name} check={check}/>
+        <Inp name="name" info={name}/>
         <Inp name="age" type="number" info={age}/>
         <div className="input-group mb-2">
           <div className="input-group-prepend">
