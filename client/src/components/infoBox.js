@@ -67,6 +67,7 @@ export default class Infobox extends React.Component {
   }
 
   nameCheck(value) {
+    if (!value) { return false }
     console.log('namecheck:', value)
     const invalidValue = value.length < 1;
     this.setState({

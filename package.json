@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd client; npm run build",
-    "start": "cd client; npm start"
+    "build-mac": "cd client; npm run build",
+    "start-mac": "cd client; npm start-mac",
+    "build-win": "cd client && npm run build",
+    "start-win": "cd client && npm run start-win"
   },
   "keywords": [],
   "author": "",
