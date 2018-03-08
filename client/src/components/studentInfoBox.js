@@ -62,7 +62,6 @@ class renderField extends React.Component {
     } = this.props;
     // 根据传入的type值设置不同类型的输入框
     let inputField = null;
-    console.log(input.onChange)
     if (type !== 'select') {
       inputField = <input
         {...input}
@@ -74,6 +73,8 @@ class renderField extends React.Component {
         })}
         name={name}
         id={name}
+        value={this.state.value}
+        onChange={this.handleChange.bind(this)}
       />;
     } else {
       inputField = <select
@@ -133,13 +134,21 @@ const ValidationForm = ({ handleSubmit, pristine, reset, submitting }) => (
       component={renderField}
       validate={[requried, IDlength]}
     />
+    {console.log(reset)}
     <Field
       name="sex"
       type="select"
       selectOpts={['Male', 'Famale', 'Secrecy']}
       component={renderField}
+      validate={requried}
     />
-    <div className="container-fluid"></div>
+    <div className="container-fluid mt-3">
+      <button className="btn btn-primary"
+              type="submit"
+      >
+        添加
+      </button>
+    </div>
   </Form>
 );
 
