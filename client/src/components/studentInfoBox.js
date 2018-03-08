@@ -134,7 +134,6 @@ const ValidationForm = ({ handleSubmit, pristine, reset, submitting }) => (
       component={renderField}
       validate={[requried, IDlength]}
     />
-    {console.log(reset)}
     <Field
       name="sex"
       type="select"

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.css';
+import { Link } from 'react-router-dom';
 import {
   Button,
   InputGroup, InputGroupAddon, InputGroupText, Input
 } from 'reactstrap';
 import styled from 'styled-components';
-import Infobox from './components/infoBox';
 
 const Myappwindow = styled.div`
   width: 30%;
@@ -23,14 +22,6 @@ const Myappwindow = styled.div`
   }
 `;
 
-const Inp = ({name, type}) => (
-  <div className="input-group mb-2">
-    <div className="input-group-prepend">
-      <label htmlFor={name} className="input-group-text">{name}</label>
-    </div>
-    <input type={type || 'text'} className="form-control" name={name} id={name}/>
-  </div>
-);
 
 class Myapp extends Component {
   submit(e) {
@@ -55,17 +46,7 @@ class Myapp extends Component {
   render() {
     return (
       <div>
-        <h2>My App:</h2>
-        <hr />
-        <Myappwindow>
-          <form method="post" onSubmit={this.submit.bind(this)}>
-            <Inp name='name'/>
-            <Inp name='age' type='number'/>
-            <Inp name='sex'/>
-            <button type="submit" className="btn btn-primary">Add</button>
-          </form>
-        </Myappwindow>
-        <Infobox></Infobox>
+        <Link className="btn btn-primary" to="/add">Add</Link>
       </div>
     );
   }
@@ -85,6 +66,7 @@ class App extends Component {
         </p>
         <p>date: { this.state.date }.</p>
         <Button>Button</Button>
+        <hr/>
         <div>
           <Myapp />
         </div>

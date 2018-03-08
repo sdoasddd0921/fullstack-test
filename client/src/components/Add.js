@@ -1,9 +1,8 @@
 import React from 'react';
-import Infobox from './infoBox';
+import Infobox from './studentInfoBox';
 
 export default class Add extends React.Component {
   add(data) {
-    // alert('you\'ll add infos');
     fetch('/api-addInfo', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -21,7 +20,7 @@ export default class Add extends React.Component {
   render() {
     return <div>
       <h4 className="text-center mb-3">this is add page!</h4>
-      <Infobox type="Add" callback={this.add.bind(this)} onSubmit = {this.sub}/>
+      <Infobox type="Add" onSubmit = {this.sub}/>
     </div>;
   }
 }
