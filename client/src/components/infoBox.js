@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import classnames from 'classnames';
-import { connect, mapStateToProps, mapDispatchToProps } from 'react-redux';
+import { connect } from 'react-redux';
 
 const Form = styled.form`
   width: 256px;
