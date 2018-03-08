@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
+import { reduxForm, Field } from 'redux-form';
 
 const Form = styled.form`
   width: 256px;
@@ -43,20 +44,21 @@ class Inp extends React.Component {
         </label>
       </div>
 
-      <input type={type || 'text'}
+      <Field type={type || 'text'}
              placeholder={`Enter your ${name}`}
              onBlur={this.inputCheck.bind(this)}
              onChange={this.inputCheck.bind(this)}
-             defaultValue={info}
+             // defaultValue={info}
              className={classes}
              name={name}
              id={name}
+             component="input"
       />
     </div>;
   }
 }
 
-export default class Infobox extends React.Component {
+class Infobox extends React.Component {
   constructor(props) {
     super(props);
     this.fields = ['name', 'age', 'sex'];
@@ -86,6 +88,8 @@ export default class Infobox extends React.Component {
         ? this[field+'Check']()
         : null
     });
+    console.log('submit')
+    console.log(this.props)
 
     // const data = {};
     // const formData = new FormData(e.target);
@@ -133,3 +137,22 @@ export default class Infobox extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  console.log('mapstatetoprops: ', state);
+  return {
+    teststate: state.testdata
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dotest: function() {
+      dispatch({type: 'test'})
+    }
+  };
+}
+
+export default reduxForm({
+  form: 'concat'
+})(Infobox);

@@ -7,19 +7,25 @@ import Loadable from 'react-loadable';
 import registerServiceWorker from './registerServiceWorker';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 
-const reducer = (state, action) => {
+const reducer = (state={ testdata: 'this is a test data' }, action) => {
   switch (action.type) {
     case 'test':
-      return 'test';
+      return {...state, testdata: 'test success'};
     default:
       return state;
   }
 };
 
+const rootReducer = combineReducers({
+  reducer,
+  form: formReducer
+})
+
 // redux store
-const store = createStore(reducer);
+const store = createStore(rootReducer);
 
 
 // import Test from './components/test';
