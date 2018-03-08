@@ -10,6 +10,11 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
+// 开启hot reload
+if (module.hot) {
+  // module.hot.accept();
+}
+
 const reducer = (state={ testdata: 'this is a test data' }, action) => {
   switch (action.type) {
     case 'test':
