@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import Popup from './components/popup';
 
 // 开启hot reload
 if (module.hot) {
@@ -73,6 +74,7 @@ ReactDOM.render(
           <Route path="/add" component={Add}/>
           <Route path="/test" component={Load('test')}/>
         </div>
+        <Popup/>
       </div>
     </Router>
   </Provider>,

@@ -3,7 +3,8 @@ import Infobox from './studentInfoBox';
 
 export default class Add extends React.Component {
   add(data) {
-    fetch('/api-addInfo', {
+    console.log('in add: ', JSON.stringify(data))
+    fetch('/api/addStudent', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: new Headers({
@@ -14,7 +15,9 @@ export default class Add extends React.Component {
   }
 
   sub=(data)=> {
-    console.log(data)
+    data.age = Number(data.age);
+    console.log(data);
+    this.add(data);
   }
 
   render() {

@@ -115,7 +115,7 @@ class renderField extends React.Component {
 }
 
 // 信息输入表单
-const ValidationForm = ({ handleSubmit, pristine, reset, submitting }) => (
+const ValidationForm = ({ handleSubmit, submitting }) => (
   <Form className="text-center" onSubmit={handleSubmit}>
     <Field
       name="name"
@@ -126,13 +126,13 @@ const ValidationForm = ({ handleSubmit, pristine, reset, submitting }) => (
       name="age"
       type="number"
       component={renderField}
-      validate={[requried, ageTooYoung, ageTooOld]}
+      validate={[requried, number, ageTooYoung, ageTooOld]}
     />
     <Field
       name="ID"
-      type="number"
+      type="text"
       component={renderField}
-      validate={[requried, IDlength]}
+      validate={[requried, number, IDlength]}
     />
     <Field
       name="sex"
@@ -144,6 +144,7 @@ const ValidationForm = ({ handleSubmit, pristine, reset, submitting }) => (
     <div className="container-fluid mt-3">
       <button className="btn btn-primary"
               type="submit"
+              disabled={submitting}
       >
         添加
       </button>

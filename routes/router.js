@@ -3,7 +3,9 @@
 */
 const path = require('path');
 const express = require('express');
+const bodyParser = require('body-parser');
 const router = express.Router();
+
 
 // API路由
 const api = require('./api');
@@ -13,6 +15,6 @@ router.get(['/', '/add(/*)?'], (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/build/index.html'));
 });
 
-router.use('/api', api);
+router.use('/api', bodyParser.json(), api);
 
 module.exports = router;

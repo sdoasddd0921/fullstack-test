@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import classnames from 'classnames';
-import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 
 const Form = styled.form`
@@ -28,7 +27,7 @@ class Inp extends React.Component {
   }
 
   render() {
-    const {info='', name, type} = this.props;
+    const { name, type} = this.props;
 
     let classes = classnames({
       'form-control': true,

@@ -10,6 +10,8 @@ const dbCopy = 'mgset-5292433';
 
 const dbConnectString = `mongodb://${dbUser}:${dbPass}@${dbAddress1},${dbAddress2}/${dbName}?replicaSet=${dbCopy}`;
 
-mongoose.connect(dbConnectString)
-  .then(dt => console.log('success~'))
+const db = mongoose.connect(dbConnectString)
+  .then(dt => console.log('database connect success~'))
   .catch(err => console.log('ERR!!!!!!!'));
+
+module.exports = db;
