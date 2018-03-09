@@ -12,3 +12,8 @@
   height: 300px;
   background-color: #fff;
 }
+
+/* 修复一个小问题，在chrome下button会有蓝色的外边线 */
+button.close {
+  outline: none;
+}

@@ -8,7 +8,7 @@ class Popup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: true
+      modal: this.props.show
     };
 
     this.toggle = this.toggle.bind(this);
@@ -21,10 +21,18 @@ class Popup extends React.Component {
   render() {
     return (
       <Modal isOpen={this.state.modal} toggle={this.toggle}>
-        <ModalHeader>Modal Title</ModalHeader>
+        <ModalHeader toggle={this.toggle}>Modal Title</ModalHeader>
       </Modal>
     );
   }
 };
 
-export default connect()(Popup);
+let a = 0;
+const mapStateToProps = (state) => {
+  console.log('mstp:', a++)
+  return {
+    show: state.showPopup
+  };
+};
+
+export default connect(mapStateToProps)(Popup);

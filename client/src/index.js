@@ -11,39 +11,45 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import Popup from './components/popup';
+import reducer from './redux/reducer';
 
 // 开启hot reload
 if (module.hot) {
   // module.hot.accept();
 }
-
-const reducer = (state={ testdata: 'this is a test data' }, action) => {
-  switch (action.type) {
-    case 'test':
-      return {...state, testdata: 'test success'};
-    default:
-      return state;
-  }
-};
-
-const rootReducer = combineReducers({
-  reducer,
-  form: formReducer
-})
+//
+// const defaultState = {
+//   testdata: 'this is a test data',
+//   showPopup: true
+// };
+//
+// const reducer = (state=defaultState, action) => {
+//   switch (action.type) {
+//     case 'test':
+//       return {...state, testdata: 'test success'};
+//     default:
+//       return state;
+//   }
+// };
+//
+// const rootReducer = combineReducers({
+//   reducer,
+//   form: formReducer
+// })
 
 // redux store
-const store = createStore(rootReducer);
+const store = createStore(reducer);
 
 
 // import Test from './components/test';
 
-// 按需异步加载组件
 const AsyncTest = Loadable({
   loader: () => import('./components/test'),
   loading: () => null
 
 });
 
+// 按需异步加载组件
 const Load = (component) => !component
   ? null
   : Loadable({
