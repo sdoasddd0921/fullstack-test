@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Infobox from './studentInfoBox';
+import { togglePopup } from '../redux/actions';
 
-export default class Add extends React.Component {
+class Add extends React.Component {
   add(data) {
-    console.log('in add: ', JSON.stringify(data))
     fetch('/api/addStudent', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -16,7 +17,8 @@ export default class Add extends React.Component {
 
   sub=(data)=> {
     data.age = Number(data.age);
-    console.log(data);
+    console.log(this.props.dispatch);
+    this.props.dispatch(togglePopup('open'))
     this.add(data);
   }
 
@@ -27,3 +29,5 @@ export default class Add extends React.Component {
     </div>;
   }
 }
+
+export default connect()(Add);
