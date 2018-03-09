@@ -8,15 +8,17 @@ router.get('/test', (req, res) => {
   res.send({type:'GET'});
 });
 
-router.post('/addStudent', (req, res) => {
-  const data = req.body;
-  console.log(data);
-  // Student.create(data, function(err, backdata) {
-  //   if (err) console.log(err);
-  //   console.log('saved!', backdata);
-  // });
-  // 前端会调用json解析方法，不能直接返回字符串
-  res.send(['OK']);
+router.post('/addStudent', (req, res, next) => {
+  const student = req.body;
+  console.log(student);
+  Student.create(student)
+    .then((student) => {
+      // 前端会调用json解析方法，不能直接返回字符串
+      res.send({
+        status: 'OK',
+        savedData: student
+      });
+    }).catch(next);
 });
 
 module.exports = router;
