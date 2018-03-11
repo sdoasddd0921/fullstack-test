@@ -8,12 +8,21 @@ router.get('/test', (req, res) => {
   res.send({type:'GET'});
 });
 
+// 返回所有学生
 router.get('/student', (req, res, next) => {
-  // Student.find({},(err,st)=>{
-  //   console.log(st);
-  //   res.send(st);
-  // });
-  res.send(['OK'])
+  Student.find({},(err,st)=>{
+    console.log(st);
+    res.send(st);
+  });
+  // res.send(['OK'])
+});
+
+// 根据_id返回单个学生
+router.get('/student/:id', (req, res, next) => {
+  Student.findById(req.params.id)
+    .then((err, student) => {
+        res.send(student);
+    }).catch(next);
 });
 
 router.post('/addStudent', (req, res, next) => {

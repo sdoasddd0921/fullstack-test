@@ -16,8 +16,8 @@ router.get(['/', '/add(/*)?'], (req, res) => {
 
 // 错误处理
 const errorHandler = (err, req, res, next) => {
-  console.log('save data error!');
-  res.status(422).send({ error: err.message });
+  console.log('Gloable error handler fired!');
+  res.status(500).send({ error: err.message });
 }
 
 router.use('/api', bodyParser.json(), api, errorHandler);
