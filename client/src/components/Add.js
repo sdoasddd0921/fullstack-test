@@ -12,7 +12,8 @@ class Add extends React.Component {
         "Content-type": "application/json"
       })
     }).then(res => res.json())
-      .then((dt) => console.log('dt:', dt));
+      .then((dt) => console.log('dt:', dt))
+      .catch((err) => console.log('Error during adding data...'));
   }
 
   sub=(data)=> {

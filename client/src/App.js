@@ -7,6 +7,7 @@ import {
   InputGroup, InputGroupAddon, InputGroupText, Input
 } from 'reactstrap';
 import styled from 'styled-components';
+import StuList from './components/showStudents';
 
 const Myappwindow = styled.div`
   width: 30%;
@@ -24,25 +25,6 @@ const Myappwindow = styled.div`
 
 
 class Myapp extends Component {
-  submit(e) {
-    e.preventDefault();
-    const databody = new FormData(e.target);
-    const data = {};
-    for (const [key, value] of databody)
-      data[key] = value;
-    console.log('data:', data);
-    fetch('/add', {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      }),
-      body: JSON.stringify(data)
-    })
-      .then((res) => {
-        console.log(res);
-      });
-  }
-
   render() {
     return (
       <div>
@@ -69,6 +51,7 @@ class App extends Component {
         <hr/>
         <div>
           <Myapp />
+          <StuList />
         </div>
       </div>
     );

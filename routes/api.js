@@ -8,6 +8,14 @@ router.get('/test', (req, res) => {
   res.send({type:'GET'});
 });
 
+router.get('/student', (req, res, next) => {
+  // Student.find({},(err,st)=>{
+  //   console.log(st);
+  //   res.send(st);
+  // });
+  res.send(['OK'])
+});
+
 router.post('/addStudent', (req, res, next) => {
   const student = req.body;
   console.log(student);

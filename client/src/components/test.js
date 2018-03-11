@@ -1,5 +1,4 @@
 import React from 'react';
-import FormTest from './formtest';
 import AddStudent from './studentInfoBox';
 
 class Test extends React.Component {
@@ -32,10 +31,6 @@ class Test extends React.Component {
           <button className="btn btn-primary mr-2" onClick={this.client.bind(this, 'DELETE')}>
             DELETE
           </button>
-        </div>
-        <hr/>
-        <div className="container">
-          <FormTest onSubmit={(data)=>console.log('submit!!!',data)} />
         </div>
         <hr/>
         <div className="container">

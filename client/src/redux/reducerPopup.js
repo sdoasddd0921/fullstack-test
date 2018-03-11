@@ -1,4 +1,4 @@
-const popupState = { show: true };
+const popupState = { show: false };
 
 const popupReducer = (state=popupState, action) => {
   switch (action.type) {
