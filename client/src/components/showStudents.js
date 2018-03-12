@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class StudentList extends React.Component {
   state = { students: [] }
@@ -19,6 +20,7 @@ class StudentList extends React.Component {
             <th scope="col">Name</th>
             <th scope="col">Age</th>
             <th scope="col">Sex</th>
+            <th scope="col">Option</th>
           </tr>
         </thead>
         <tbody>
@@ -29,6 +31,14 @@ class StudentList extends React.Component {
               <td>{std.name}</td>
               <td>{std.age}</td>
               <td>{std.sex}</td>
+              <td>
+                <Link className="btn btn-primary"
+                      to={{
+                        pathname: '/edit/' + std._id,
+                        state: std
+                      }}
+                >edit</Link>
+              </td>
             </tr>
           )) }
         </tbody>

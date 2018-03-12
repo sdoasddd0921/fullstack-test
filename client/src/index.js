@@ -12,34 +12,15 @@ import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import Popup from './components/popup';
 import reducer from './redux/reducer';
+// import EditStu from './components/editStudent';
 
 // 开启hot reload
 if (module.hot) {
   // module.hot.accept();
 }
-//
-// const defaultState = {
-//   testdata: 'this is a test data',
-//   showPopup: true
-// };
-//
-// const reducer = (state=defaultState, action) => {
-//   switch (action.type) {
-//     case 'test':
-//       return {...state, testdata: 'test success'};
-//     default:
-//       return state;
-//   }
-// };
-//
-// const rootReducer = combineReducers({
-//   reducer,
-//   form: formReducer
-// })
 
 // redux store
 const store = createStore(reducer);
-
 
 // import Test from './components/test';
 
@@ -71,14 +52,16 @@ ReactDOM.render(
           <li><Link to="/">Home</Link></li>
           <li><Link to="/add">Add info</Link></li>
           <li><Link to="/test">Test</Link></li>
+          <li><Link to="/edit">Edit</Link></li>
         </ul>
 
         <hr/>
 
         <div className="container">
           <Route exact path="/" component={App}/>
-          <Route path="/add" component={Add}/>
+          <Route path="/add" component={Load('Add')}/>
           <Route path="/test" component={Load('test')}/>
+          <Route path="/edit" component={Load('editStudent')}/>
         </div>
         <Popup/>
       </div>
