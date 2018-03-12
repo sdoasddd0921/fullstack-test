@@ -115,28 +115,32 @@ class renderField extends React.Component {
 }
 
 // 信息输入表单
-const ValidationForm = ({ handleSubmit, submitting }) => (
+const ValidationForm = ({ handleSubmit, submitting, name, sex, age, ID }) => (
   <Form className="text-center" onSubmit={handleSubmit}>
     <Field
       name="name"
       component={renderField}
       validate={[requried]}
+      defaultValue={name}
     />
     <Field
       name="age"
       type="number"
       component={renderField}
+      defaultValue={age}
       validate={[requried, number, ageTooYoung, ageTooOld]}
     />
     <Field
       name="ID"
       type="text"
+      defaultValue={ID}
       component={renderField}
       validate={[requried, number, IDlength]}
     />
     <Field
       name="sex"
       type="select"
+      defaultValue={sex}
       selectOpts={['Male', 'Famale', 'Secrecy']}
       component={renderField}
       validate={requried}

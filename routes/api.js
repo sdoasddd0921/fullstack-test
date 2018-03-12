@@ -10,7 +10,7 @@ router.get('/test', (req, res) => {
 
 // 返回所有学生
 router.get('/student', (req, res, next) => {
-  Student.find({},(err,st)=>{
+  Student.find((err,st)=>{
     console.log(st);
     res.send(st);
   });
@@ -23,6 +23,26 @@ router.get('/student/:id', (req, res, next) => {
     .then((err, student) => {
         res.send(student);
     }).catch(next);
+});
+
+// 修改信息
+router.put('/student/:id', (req, res,next) => {
+  const stu = req.body;
+
+  // 因为前端BUG可能导致没有id
+  if (req.params.id === undefined) {
+    return res.send({ error: 'Invalid Identity! Please try again.' });
+  }
+
+  Student.findByIdAndUpdate(req.params.id, stu)
+    .then(function(student) {
+      // 未查询到
+      if (student === null) {
+        return res.send({ error: 'Could not find such student.' });
+      }
+      res.send({ result: 'Update success.' });
+    })
+    .catch(next);
 });
 
 router.post('/addStudent', (req, res, next) => {
