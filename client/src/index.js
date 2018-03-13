@@ -6,7 +6,7 @@ import App from './App';
 import Add from './components/Add';
 import Loadable from 'react-loadable';
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
@@ -49,10 +49,10 @@ ReactDOM.render(
     <Router>
       <div>
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/add">Add info</Link></li>
-          <li><Link to="/test">Test</Link></li>
-          <li><Link to="/edit">Edit</Link></li>
+          <li><NavLink exact activeClassName="home-nav-active" to="/">Home</NavLink></li>
+          <li><NavLink exact activeClassName="home-nav-active" to="/add">Add info</NavLink></li>
+          <li><NavLink exact activeClassName="home-nav-active" to="/test">Test</NavLink></li>
+          <li><NavLink exact activeClassName="home-nav-active" to="/edit/:id">Edit</NavLink></li>
         </ul>
 
         <hr/>

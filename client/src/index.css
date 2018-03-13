@@ -25,3 +25,8 @@ input.form-control:focus {
   display: inline-block;
   margin-right: 1em;
 }
+
+/* home nav active */
+.home-nav-active {
+  color: red;
+}
