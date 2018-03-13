@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import App from './App';
-import Add from './components/Add';
 import Loadable from 'react-loadable';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 import Popup from './components/popup';
 import reducer from './redux/reducer';
-// import EditStu from './components/editStudent';
+
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.css';
+
+import App from './App';
+import Add from './components/Add';
 
 // 开启hot reload
 if (module.hot) {
@@ -21,8 +21,6 @@ if (module.hot) {
 
 // redux store
 const store = createStore(reducer);
-
-// import Test from './components/test';
 
 const AsyncTest = Loadable({
   loader: () => import('./components/test'),
@@ -48,7 +46,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div>
-        <ul>
+        <ul className="home-nav">
           <li><NavLink exact activeClassName="home-nav-active" to="/">Home</NavLink></li>
           <li><NavLink exact activeClassName="home-nav-active" to="/add">Add info</NavLink></li>
           <li><NavLink exact activeClassName="home-nav-active" to="/test">Test</NavLink></li>

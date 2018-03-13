@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
 import {
@@ -9,22 +8,7 @@ import {
 import styled from 'styled-components';
 import StuList from './components/showStudents';
 
-const Myappwindow = styled.div`
-  width: 30%;
-  margin: auto;
-  label {
-    width: 66px;
-    text-align: center;
-  }
-  form {
-    border: 1px solid #ddd;
-    padding: 2em 2em 1em;
-    border-radius: 5px;
-  }
-`;
-
-
-class Myapp extends Component {
+class Myapp extends React.Component {
   render() {
     return (
       <div>
@@ -34,23 +18,14 @@ class Myapp extends Component {
   }
 }
 
-class App extends Component {
+class App extends React.Component {
   state = { date: '' };
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>date: { this.state.date }.</p>
-        <Button>Button</Button>
-        <hr/>
         <div>
           <Myapp />
+          <hr/>
           <StuList />
         </div>
       </div>
