@@ -3,5 +3,8 @@
     ".git",
     "node_modules/**/node_modules",
     "client"
-  ]
+  ],
+  "events": {
+    "restart": "clear"
+  }
 }
