@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { togglePopup } from "../redux/actions";
+import { withRouter } from 'react-router-dom';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import '../static/popup.css';
 
@@ -15,9 +16,12 @@ class Popup extends React.Component {
     this.toggle = this.toggle.bind(this);
   }
 
-  toggle() {
-    const { dispatch, show } = this.props;
-    dispatch(togglePopup(!show))
+  toggle(e) {
+    const { dispatch, show, to, history } = this.props;
+    dispatch(togglePopup(!show));
+    if (e.target.id === 'OK') {
+      history.push(to || '/');
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -31,7 +35,7 @@ class Popup extends React.Component {
         <ModalHeader toggle={this.toggle}>Result:</ModalHeader>
         <ModalBody>{ result }</ModalBody>
         <ModalFooter>
-          <button className="btn btn-primary" onClick={this.toggle}>OK</button>
+          <button className="btn btn-primary" id="OK" onClick={this.toggle}>OK</button>
         </ModalFooter>
       </Modal>
     );
@@ -42,4 +46,4 @@ const mapStateToProps = ({popup}) => {
   return { ...popup };
 };
 
-export default connect(mapStateToProps)(Popup);
+export default withRouter(connect(mapStateToProps)(Popup));
