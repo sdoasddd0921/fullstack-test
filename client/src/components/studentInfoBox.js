@@ -115,7 +115,7 @@ class renderField extends React.Component {
 }
 
 // 信息输入表单
-const ValidationForm = ({ handleSubmit, submitting, name, sex, age, ID }) => (
+const ValidationForm = ({ handleSubmit, submitting, name, sex, age, ID, type='button' }) => (
   <Form className="text-center" onSubmit={handleSubmit}>
     <Field
       name="name"
@@ -150,7 +150,7 @@ const ValidationForm = ({ handleSubmit, submitting, name, sex, age, ID }) => (
               type="submit"
               disabled={submitting}
       >
-        添加
+        {type}
       </button>
     </div>
   </Form>

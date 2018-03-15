@@ -41,7 +41,7 @@ class EditStudent extends React.Component {
       <div>
         <h1 className="h1">Edit student</h1>
         <hr/>
-        <StuBox {...defaultDatas} onSubmit={this.submit.bind(this)}/>
+        <StuBox type="Edit" {...defaultDatas} onSubmit={this.submit.bind(this)}/>
       </div>
     );
   }
