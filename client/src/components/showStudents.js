@@ -1,13 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { togglePopup } from '../redux/actions';
 
 class StudentList extends React.Component {
   state = { students: [] }
+
   componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
     fetch('/api/student')
       .then(res => res.json())
       .then(data => this.setState({ students: data }))
-      .catch(err => console.log('get data err'));
+      .catch(err => alert('get data err'));
+  }
+
+  deleteStudent(id) {
+    const { openPopup } = this.props;
+    fetch('/api/student/' + id, {
+      method: 'DELETE',
+      body: JSON.stringify({id: id}),
+      headers: new Headers({
+        "Accept": "application/json",
+        "Content-type": "application/json"
+      })
+    }).then(res => res.json())
+      .then(message => {
+        openPopup(message.result);
+        this.fetchData();
+      })
+      .catch(err => {
+        console.log('delete student err: ', err);
+        openPopup('Delete student err: ', err.message);
+      });
   }
 
   render() {
@@ -38,6 +65,9 @@ class StudentList extends React.Component {
                         state: std
                       }}
                 >edit</Link>
+                <button className="btn btn-danger ml-2"
+                        onClick={this.deleteStudent.bind(this, std._id)}
+                >delete</button>
               </td>
             </tr>
           )) }
@@ -47,4 +77,10 @@ class StudentList extends React.Component {
   }
 }
 
-export default StudentList;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    openPopup: (result, err=false) => dispatch(togglePopup('open', result, err))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(StudentList);

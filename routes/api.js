@@ -11,10 +11,9 @@ router.get('/test', (req, res) => {
 // 返回所有学生
 router.get('/student', (req, res, next) => {
   Student.find((err,st)=>{
-    console.log(st);
+    // console.log(st); // 控制台打印获取到的数据
     res.send(st);
   });
-  // res.send(['OK'])
 });
 
 // 根据_id返回单个学生
@@ -23,6 +22,19 @@ router.get('/student/:id', (req, res, next) => {
     .then((err, student) => {
         res.send(student);
     }).catch(next);
+});
+
+// 根据_id删除学生
+router.delete('/student/:id', (req, res, next) => {
+  console.log(req.params)
+  Student.findByIdAndRemove(req.params.id)
+    .then((student) => {
+      res.send({ result: `Student ${student.name} delete success.` });
+    })
+    .catch(err => {
+      console.log(err.message);
+      res.send({ error: err.message });
+    });
 });
 
 // 修改信息
@@ -45,7 +57,8 @@ router.put('/student/:id', (req, res,next) => {
     .catch(next);
 });
 
-router.post('/addStudent', (req, res, next) => {
+// 添加信息
+router.post('/student', (req, res, next) => {
   const student = req.body;
   console.log(student);
   Student.create(student)

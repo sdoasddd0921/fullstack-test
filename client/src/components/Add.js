@@ -5,7 +5,7 @@ import { togglePopup } from '../redux/actions';
 
 class Add extends React.Component {
   add(data) {
-    fetch('/api/addStudent', {
+    fetch('/api/student', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: new Headers({

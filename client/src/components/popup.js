@@ -19,7 +19,8 @@ class Popup extends React.Component {
   toggle(e) {
     const { dispatch, show, to, history } = this.props;
     dispatch(togglePopup(!show));
-    if (e.target.id === 'OK') {
+    console.log(e)
+    if (e === undefined || e.target.id === 'OK') {
       history.push(to || '/');
     }
   }
