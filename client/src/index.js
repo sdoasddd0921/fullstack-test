@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Loadable from 'react-loadable';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
 import Popup from './components/popup';
 import reducer from './redux/reducer';
 
@@ -12,7 +12,6 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import App from './App';
-import Add from './components/Add';
 
 // 开启hot reload
 if (module.hot) {
@@ -22,11 +21,11 @@ if (module.hot) {
 // redux store
 const store = createStore(reducer);
 
-const AsyncTest = Loadable({
-  loader: () => import('./components/test'),
-  loading: () => null
+// const AsyncTest = Loadable({
+//   loader: () => import('./components/test'),
+//   loading: () => null
 
-});
+// });
 
 // 按需异步加载组件
 const Load = (component) => !component
@@ -36,11 +35,11 @@ const Load = (component) => !component
   loading: () => <div>Loading...</div>
 });
 
-const Home = () => (
-  <div>
-    <h2 className="text-center">This is Home page.</h2>
-  </div>
-);
+// const Home = () => (
+//   <div>
+//     <h2 className="text-center">This is Home page.</h2>
+//   </div>
+// );
 
 ReactDOM.render(
   <Provider store={store}>

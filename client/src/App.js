@@ -1,11 +1,6 @@
 import React from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
-import {
-  Button,
-  InputGroup, InputGroupAddon, InputGroupText, Input
-} from 'reactstrap';
-import styled from 'styled-components';
 import StuList from './components/showStudents';
 
 class Myapp extends React.Component {
