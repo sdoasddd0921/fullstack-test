@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { togglePopup } from "../redux/actions";
-import { Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import '../static/popup.css';
 
 class Popup extends React.Component {
@@ -25,19 +25,21 @@ class Popup extends React.Component {
   }
 
   render() {
-    const { show } = this.props;
+    const { show, result } = this.props;
     return (
       <Modal isOpen={show} toggle={this.toggle}>
-        <ModalHeader toggle={this.toggle}>Modal Title</ModalHeader>
+        <ModalHeader toggle={this.toggle}>Result:</ModalHeader>
+        <ModalBody>{ result }</ModalBody>
+        <ModalFooter>
+          <button className="btn btn-primary" onClick={this.toggle}>OK</button>
+        </ModalFooter>
       </Modal>
     );
   }
 };
 
-const mapStateToProps = ({popup:{show}}) => {
-  return {
-    show
-  };
+const mapStateToProps = ({popup}) => {
+  return { ...popup };
 };
 
 export default connect(mapStateToProps)(Popup);

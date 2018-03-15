@@ -35,11 +35,8 @@ const Load = (component) => !component
   loading: () => <div>Loading...</div>
 });
 
-// const Home = () => (
-//   <div>
-//     <h2 className="text-center">This is Home page.</h2>
-//   </div>
-// );
+// 
+
 
 ReactDOM.render(
   <Provider store={store}>
