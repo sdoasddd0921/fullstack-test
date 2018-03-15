@@ -4,16 +4,18 @@ const Schema = mongoose.Schema;
 const StudentSchema = new Schema({
   name: {
     type: String,
-    required: [true, 'Name is required']
+    unique: true,
+    required: [true, 'Name is required.']
   },
   sex: String,
   age: {
     type: Number,
-    required: [true, 'Age is required']
+    required: [true, 'Age is required.']
   },
   ID: {
     type: String,
-    required: [true, 'ID is required']
+    unique: true,
+    required: [true, 'ID is required.']
   }
 });
 

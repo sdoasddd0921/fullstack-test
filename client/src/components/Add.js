@@ -13,7 +13,14 @@ class Add extends React.Component {
         "Content-type": "application/json"
       })
     }).then(res => res.json())
-      .then((dt) => this.props.openPopup('Student added successfully.'))
+      .then((dt) => {
+        console.log(dt)
+        if (dt.error) {
+          this.props.openPopup(dt.error, true);
+        } else {
+          this.props.openPopup('Student added successfully.');
+        }
+      })
       .catch((err) => this.props.openPopup('Student added false.', true));
   }
 

@@ -14,12 +14,6 @@ router.get(['/', '/add(/*)?'], (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/build/index.html'));
 });
 
-// 错误处理
-const errorHandler = (err, req, res, next) => {
-  console.log('Gloable error handler fired!');
-  res.status(500).send({ error: err.message });
-}
-
-router.use('/api', bodyParser.json(), api, errorHandler);
+router.use('/api', bodyParser.json(), api);
 
 module.exports = router;

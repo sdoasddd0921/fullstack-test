@@ -8,6 +8,21 @@ router.get('/test', (req, res) => {
   res.send({type:'GET'});
 });
 
+const hasStudent = (name, yes, no) => {
+  Student.find({ name: name })
+    .then((student) => {
+      student.length > 0
+        ? yes()
+        : no();
+    })
+    .catch(err => res.send({ error: err.message }));
+};
+
+router.get('/name/:name', (req, res) => {
+  hasStudent(req.params.name);
+  res.send({test:'test'})
+});
+
 // 返回所有学生
 router.get('/student', (req, res, next) => {
   Student.find((err,st)=>{
@@ -17,11 +32,14 @@ router.get('/student', (req, res, next) => {
 });
 
 // 根据_id返回单个学生
-router.get('/student/:id', (req, res, next) => {
+router.get('/student/:id', (req, res) => {
   Student.findById(req.params.id)
-    .then((err, student) => {
-        res.send(student);
-    }).catch(next);
+    .then((student) => {
+      res.send({ hasStudent: true });
+    }).catch(err => {
+      console.log('can\'t find such student');
+      res.send({ hasStudent: false });
+    });
 });
 
 // 根据_id删除学生
@@ -70,5 +88,19 @@ router.post('/student', (req, res, next) => {
       });
     }).catch(next);
 });
+
+// 错误处理
+const errorHandler = (err, req, res, next) => {
+  console.log('Gloable error handler fired!');
+  let errMessage = 'Error';
+  switch(err.code) {
+    case 11000:
+      const type = err.errmsg.match(/.*students\.\$(.*)_.*/g)[1];
+      errMessage = `This ${type} is already exist.`;
+  }
+  res.status(500).send({ error: errMessage, err: err });
+}
+
+router.use(errorHandler);
 
 module.exports = router;
