@@ -24,7 +24,7 @@ class EditStudent extends React.Component {
       .then(data => {
         if (data.error) {
           // alert(data.error);
-          openPop('Something wrong happened during saving data.');
+          openPop('Something wrong happened during saving data.', true);
         } else {
           // alert(data.result);
           openPop('Student\'s data changed success.');
@@ -49,8 +49,8 @@ class EditStudent extends React.Component {
 
 const mapDispatchToProps = (dispatch, ownProops) => {
   return {
-    openPop: (result) => {
-      dispatch(togglePopup('open', result))
+    openPop: (result, err=false) => {
+      dispatch(togglePopup('open', result, err))
     }
   };
 };

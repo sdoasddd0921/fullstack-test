@@ -29,11 +29,11 @@ class Popup extends React.Component {
   }
 
   render() {
-    const { show, result } = this.props;
+    const { show, result, err } = this.props;
     return (
       <Modal isOpen={show} toggle={this.toggle}>
-        <ModalHeader toggle={this.toggle}>Result:</ModalHeader>
-        <ModalBody>{ result }</ModalBody>
+        <ModalHeader toggle={this.toggle}>{err?'Warning:':'Result:'}</ModalHeader>
+        <ModalBody style={{color:err?'red':'#1afa29'}}>{ result }</ModalBody>
         <ModalFooter>
           <button className="btn btn-primary" id="OK" onClick={this.toggle}>OK</button>
         </ModalFooter>

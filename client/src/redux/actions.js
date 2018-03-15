@@ -1,4 +1,4 @@
-export const togglePopup = (type, result='default result') => {
+export const togglePopup = (type, result='default result', err=false) => {
   let option = '';
   if (type===true||type==='open') {
     option = 'OPENPOPUP';
@@ -9,6 +9,7 @@ export const togglePopup = (type, result='default result') => {
   }
   return {
     type: option,
-    result
+    result,
+    err
   };
 };

@@ -9,26 +9,31 @@ class Add extends React.Component {
       method: 'POST',
       body: JSON.stringify(data),
       headers: new Headers({
+        "Accept": "application/json",
         "Content-type": "application/json"
       })
     }).then(res => res.json())
-      .then((dt) => console.log('dt:', dt))
-      .catch((err) => console.log('Error during adding data...'));
+      .then((dt) => this.props.openPopup('Student added successfully.'))
+      .catch((err) => this.props.openPopup('Student added false.', true));
   }
 
-  sub=(data)=> {
+  sub(data) {
     data.age = Number(data.age);
-    console.log(this.props.dispatch);
-    this.props.dispatch(togglePopup('open'))
     this.add(data);
   }
 
   render() {
     return <div>
       <h4 className="text-center mb-3">this is add page!</h4>
-      <Infobox type="Add" onSubmit = {this.sub}/>
+      <Infobox type="Add" onSubmit = {this.sub.bind(this)}/>
     </div>;
   }
 }
 
-export default connect()(Add);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    openPopup: (result, err=false) => dispatch(togglePopup('open', result, err))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Add);
