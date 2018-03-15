@@ -93,12 +93,14 @@ router.post('/student', (req, res, next) => {
 const errorHandler = (err, req, res, next) => {
   console.log('Gloable error handler fired!');
   let errMessage = 'Error';
+  const type = err.errmsg.match(/.*students\.\$(.*)_.*/)[1];
+  console.log(err.errmsg)
+  console.log(type)
   switch(err.code) {
     case 11000:
-      const type = err.errmsg.match(/.*students\.\$(.*)_.*/g)[1];
       errMessage = `This ${type} is already exist.`;
   }
-  res.status(500).send({ error: errMessage, err: err });
+  res.status(500).send({ error: errMessage });
 }
 
 router.use(errorHandler);

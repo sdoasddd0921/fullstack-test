@@ -24,7 +24,7 @@ class EditStudent extends React.Component {
       .then(data => {
         if (data.error) {
           // alert(data.error);
-          openPop('Something wrong happened during saving data.', true);
+          openPop(data.error, true);
         } else {
           // alert(data.result);
           openPop('Student\'s data changed success.');
