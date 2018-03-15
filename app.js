@@ -1,8 +1,13 @@
 var path = require('path');
 var express = require('express');
+var compression = require('compression');
 var bodyParser = require('body-parser');
 var app = express();
+
 const router = require('./routes/router');
+
+// 压缩
+app.use(compression());
 
 // 添加静态文件路由
 app.use(express.static(path.join(__dirname, 'client/build')));
