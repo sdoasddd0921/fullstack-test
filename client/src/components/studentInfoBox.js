@@ -135,6 +135,7 @@ const ValidationForm = ({ handleSubmit, submitting, name, sex, age, ID, type='bu
       type="text"
       defaultValue={ID}
       component={renderField}
+      plh="20********"
       validate={[requried, number, IDlength]}
     />
     <Field
